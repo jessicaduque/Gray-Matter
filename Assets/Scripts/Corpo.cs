@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Corpo : MonoBehaviour
 {
-
     private Rigidbody Rb;
     private Animator Anim;
     public float sensibilidade;
@@ -13,6 +12,8 @@ public class Corpo : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         Rb = GetComponent<Rigidbody>();
         Anim = GetComponent<Animator>();
     }
