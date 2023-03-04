@@ -29,7 +29,7 @@ public class Corpo : MonoBehaviour
         // Mover
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            velocidadeP = 12;
+            velocidadeP = 10;
         }
         else
         {
