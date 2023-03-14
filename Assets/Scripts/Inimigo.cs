@@ -5,7 +5,8 @@ using UnityEngine;
 public class Inimigo : MonoBehaviour
 {
     Animator Anim;
-    private GameObject Jogador;
+    GameObject Jogador;
+    public GameObject MeuAtaque;
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +18,15 @@ public class Inimigo : MonoBehaviour
     private void Update()
     {
         transform.LookAt(Jogador.transform.position);
+        if (Vector3.Distance(Jogador.transform.position, transform.position) < 3)
+        {
+            Anim.SetBool("Atacando", true);
+
+        }
+        else
+        {
+            Anim.SetBool("Atacando", false);
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -27,5 +37,15 @@ public class Inimigo : MonoBehaviour
             Anim.SetTrigger("Morte");
             Destroy(this.gameObject, 2f);
         }
+    }
+
+    public void AtivarSoco()
+    {
+        MeuAtaque.SetActive(true);
+    }
+
+    public void DesativarSoco()
+    {
+        MeuAtaque.SetActive(false);
     }
 }
