@@ -23,10 +23,6 @@ public class Inimigo : MonoBehaviour
             Anim.SetBool("Atacando", true);
 
         }
-        else
-        {
-            Anim.SetBool("Atacando", false);
-        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -47,5 +43,6 @@ public class Inimigo : MonoBehaviour
     public void DesativarSoco()
     {
         MeuAtaque.SetActive(false);
+        Anim.SetBool("Atacando", false);
     }
 }
