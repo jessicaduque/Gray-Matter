@@ -21,4 +21,19 @@ public class CanvasManager : MonoBehaviour
     {
         SceneManager.LoadScene(0);
     }
+
+    public void ChamarCidade()
+    {
+        SceneManager.LoadScene(1);
+    }
+
+    public void ChamarEscola()
+    {
+        SceneManager.LoadScene(2);
+    }
+
+    public void ChamarPreto()
+    {
+        SceneManager.LoadScene(3);
+    }
 }

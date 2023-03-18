@@ -15,11 +15,12 @@ public class Corpo : MonoBehaviour
 
     public GameObject TelaMorte;
 
+    bool podeMover;
+
     // Start is called before the first frame update
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        PrenderPersonagem();
         Rb = GetComponent<Rigidbody>();
         Anim = GetComponent<Animator>();
     }
@@ -27,7 +28,10 @@ public class Corpo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Mover();
+        if (podeMover)
+        {
+            Mover();
+        }
     }
 
     void Mover()
@@ -78,5 +82,23 @@ public class Corpo : MonoBehaviour
                 TelaMorte.SetActive(true);
             }
         }
+    }
+
+    public void PrenderPersonagem()
+    {
+        GameObject.FindGameObjectWithTag("MainCamera").GetComponent<MoveArma>().PrenderArma();
+        GameObject.FindGameObjectWithTag("Arma").GetComponent<AtiraArma>().PrenderArma();
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        podeMover = false;
+    }
+
+    public void DesprenderPersonagem()
+    {
+        GameObject.FindGameObjectWithTag("MainCamera").GetComponent<MoveArma>().DesprenderArma();
+        GameObject.FindGameObjectWithTag("Arma").GetComponent<AtiraArma>().DesprenderArma();
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        podeMover = true;
     }
 }

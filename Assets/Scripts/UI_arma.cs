@@ -5,7 +5,6 @@ using TMPro;
 
 public class UI_arma : MonoBehaviour
 {
-
     TMP_Text meuTexto;
     AtiraArma minhaArma;
 

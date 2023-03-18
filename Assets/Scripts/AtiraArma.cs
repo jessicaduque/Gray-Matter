@@ -9,17 +9,22 @@ public class AtiraArma : MonoBehaviour
     public int municao = 30;
     public int limiteMunicao = 30;
 
+    bool podeUsarArma = false;
+
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (podeUsarArma)
         {
-            if(municao > 0)
+            if (Input.GetMouseButtonDown(0))
             {
-                municao--;
-                GameObject Disparo = Instantiate(Bala, PontoDeSaida.transform.position, Quaternion.identity);
-                Disparo.GetComponent<Rigidbody>().AddForce(transform.forward * 1000);
-                Destroy(Disparo, 2f);
+                if (municao > 0)
+                {
+                    municao--;
+                    GameObject Disparo = Instantiate(Bala, PontoDeSaida.transform.position, Quaternion.identity);
+                    Disparo.GetComponent<Rigidbody>().AddForce(transform.forward * 1000);
+                    Destroy(Disparo, 2f);
+                }
             }
         }
     }
@@ -32,5 +37,15 @@ public class AtiraArma : MonoBehaviour
         {
             municao = 30;
         }
+    }
+
+    public void PrenderArma()
+    {
+        podeUsarArma = false;
+    }
+
+    public void DesprenderArma()
+    {
+        podeUsarArma = true;
     }
 }
