@@ -9,12 +9,14 @@ public class Corpo : MonoBehaviour
     private Animator Anim;
     public float sensibilidade;
     private float velocidadeP;
+    public float jumpForce = 5f;
     public Image sangue;
 
     public int hp = 100;
 
     public GameObject TelaMorte;
 
+    bool isGrounded = false;
     bool podeMover;
 
     // Start is called before the first frame update
@@ -46,6 +48,10 @@ public class Corpo : MonoBehaviour
             velocidadeP = 5;
         }
 
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        {
+            Rb.AddForce(Vector3.up * jumpForce);
+        }
 
         float velZ = Input.GetAxis("Vertical") * velocidadeP;
         float velX = Input.GetAxis("Horizontal") * velocidadeP;
@@ -79,6 +85,7 @@ public class Corpo : MonoBehaviour
 
             if (hp <= 0)
             {
+                PrenderPersonagem();
                 TelaMorte.SetActive(true);
             }
         }
