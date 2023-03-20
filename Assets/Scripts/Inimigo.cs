@@ -7,6 +7,7 @@ public class Inimigo : MonoBehaviour
     Animator Anim;
     GameObject Jogador;
     public GameObject MeuAtaque;
+    public GameObject PontoDeSaida;
 
     // Start is called before the first frame update
     void Start()
@@ -18,7 +19,7 @@ public class Inimigo : MonoBehaviour
     private void Update()
     {
         transform.LookAt(Jogador.transform.position);
-        if (Vector3.Distance(Jogador.transform.position, transform.position) < 3)
+        if (Vector3.Distance(Jogador.transform.position, transform.position) < 16)
         {
             Anim.SetBool("Atacando", true);
 
@@ -29,20 +30,20 @@ public class Inimigo : MonoBehaviour
     {
         if(collision.gameObject.tag == "Bala")
         {
-            Destroy(collision.gameObject);
-            Anim.SetTrigger("Morte");
+            Anim.SetTrigger("Dano");
             Destroy(this.gameObject, 2f);
         }
     }
 
-    public void AtivarSoco()
+    public void EstaAtacando()
     {
-        MeuAtaque.SetActive(true);
+        GameObject Ataque = Instantiate(MeuAtaque, PontoDeSaida.transform.position, Quaternion.identity);
+        Ataque.GetComponent<Rigidbody>().AddForce(transform.forward * 500);
+        Destroy(Ataque, 5f);
     }
 
-    public void DesativarSoco()
+    public void AcabouAtaque()
     {
-        MeuAtaque.SetActive(false);
         Anim.SetBool("Atacando", false);
     }
 }

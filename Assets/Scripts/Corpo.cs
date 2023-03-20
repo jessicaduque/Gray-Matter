@@ -69,17 +69,6 @@ public class Corpo : MonoBehaviour
         Vector3 velCorrigida = velX * transform.right + velZ * transform.forward;
         Rb.velocity = new Vector3(velCorrigida.x, Rb.velocity.y, velCorrigida.z);
 
-        /*
-        // Animação de andar do personagem
-        if (velX != 0 || velZ != 0)
-        {
-            Anim.SetBool("Andar", true);
-        }
-        else if(velX == 0 && velZ == 0){
-            Anim.SetBool("Andar", false);
-        }
-        */
-
     }
 
     private void OnTriggerEnter(Collider collision)
