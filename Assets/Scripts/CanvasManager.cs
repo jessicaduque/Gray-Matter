@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class CanvasManager : MonoBehaviour
 {
+    public AudioSource glassAudio;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -15,6 +17,11 @@ public class CanvasManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void QuebrarVidroSom()
+    {
+        glassAudio.Play();
     }
 
     public void ChamarReinicio()

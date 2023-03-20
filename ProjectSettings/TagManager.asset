@@ -7,6 +7,8 @@ TagManager:
   - Bala
   - Arma
   - Ataque_Inimigo
+  - tv
+  - saida
   layers:
   - Default
   - TransparentFX
@@ -14,7 +16,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - breakable
   - 
   - 
   - 

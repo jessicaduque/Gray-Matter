@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Corpo : MonoBehaviour
 {
     private Rigidbody Rb;
-    private Animator Anim;
+    //private Animator Anim;
     public float sensibilidade;
     private float velocidadeP;
     public float jumpForce = 5f;
@@ -18,21 +19,32 @@ public class Corpo : MonoBehaviour
 
     bool isGrounded = false;
     bool podeMover;
+    bool podeGirar;
+
+    int numeroControleObjetos = 0;
 
     // Start is called before the first frame update
     void Start()
     {
         PrenderPersonagem();
+        PrenderGiro();
         Rb = GetComponent<Rigidbody>();
-        Anim = GetComponent<Animator>();
+        //Anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
+
         if (podeMover)
         {
             Mover();
+        }
+        if (podeGirar)
+        {
+            // Movimento girar do player
+            float mouseX = Input.GetAxis("Mouse X") * sensibilidade * Time.deltaTime;
+            transform.Rotate(Vector3.up * mouseX);
         }
     }
 
@@ -59,6 +71,7 @@ public class Corpo : MonoBehaviour
         Vector3 velCorrigida = velX * transform.right + velZ * transform.forward;
         Rb.velocity = new Vector3(velCorrigida.x, Rb.velocity.y, velCorrigida.z);
 
+        /*
         // Animação de andar do personagem
         if (velX != 0 || velZ != 0)
         {
@@ -67,10 +80,21 @@ public class Corpo : MonoBehaviour
         else if(velX == 0 && velZ == 0){
             Anim.SetBool("Andar", false);
         }
+        */
 
-        // Movimento girar do player
-        float mouseX = Input.GetAxis("Mouse X") * sensibilidade * Time.deltaTime;
-        transform.Rotate(Vector3.up * mouseX);
+    }
+
+    private void OnTriggerEnter(Collider collision)
+    {
+        numeroControleObjetos = GameObject.FindGameObjectWithTag("GameController").GetComponent<RoteiroCena0>().ReturnControleObjetos();
+
+        if (numeroControleObjetos >= 50)
+        {
+            if (collision.gameObject.tag == "saida")
+            {
+                GameObject.FindGameObjectWithTag("GameController").GetComponent<CanvasManager>().ChamarCidade();
+            }
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -93,6 +117,7 @@ public class Corpo : MonoBehaviour
 
     public void PrenderPersonagem()
     {
+        PrenderGiro();
         GameObject.FindGameObjectWithTag("MainCamera").GetComponent<MoveArma>().PrenderArma();
         GameObject.FindGameObjectWithTag("Arma").GetComponent<AtiraArma>().PrenderArma();
         Cursor.lockState = CursorLockMode.None;
@@ -102,10 +127,20 @@ public class Corpo : MonoBehaviour
 
     public void DesprenderPersonagem()
     {
+        DesprenderGiro();
         GameObject.FindGameObjectWithTag("MainCamera").GetComponent<MoveArma>().DesprenderArma();
         GameObject.FindGameObjectWithTag("Arma").GetComponent<AtiraArma>().DesprenderArma();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         podeMover = true;
+    }
+
+    public void PrenderGiro()
+    {
+        podeGirar = false;
+    }
+    public void DesprenderGiro()
+    {
+        podeGirar = true;
     }
 }

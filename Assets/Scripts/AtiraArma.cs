@@ -11,6 +11,8 @@ public class AtiraArma : MonoBehaviour
 
     bool podeUsarArma = false;
 
+    public AudioSource balaTiro;
+
     // Update is called once per frame
     void Update()
     {
@@ -20,9 +22,10 @@ public class AtiraArma : MonoBehaviour
             {
                 if (municao > 0)
                 {
-                    municao--;
+                    //municao--;
                     GameObject Disparo = Instantiate(Bala, PontoDeSaida.transform.position, Quaternion.identity);
                     Disparo.GetComponent<Rigidbody>().AddForce(transform.forward * 1000);
+                    balaTiro.Play(0);
                     Destroy(Disparo, 2f);
                 }
             }
