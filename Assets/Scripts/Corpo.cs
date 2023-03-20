@@ -26,8 +26,6 @@ public class Corpo : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PrenderPersonagem();
-        PrenderGiro();
         Rb = GetComponent<Rigidbody>();
         //Anim = GetComponent<Animator>();
     }
@@ -86,13 +84,16 @@ public class Corpo : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        numeroControleObjetos = GameObject.FindGameObjectWithTag("GameController").GetComponent<RoteiroCena0>().ReturnControleObjetos();
 
-        if (numeroControleObjetos >= 50)
+        if(SceneManager.GetActiveScene().buildIndex == 0)
         {
-            if (collision.gameObject.tag == "saida")
+            numeroControleObjetos = GameObject.FindGameObjectWithTag("GameController").GetComponent<RoteiroCena0>().ReturnControleObjetos();
+            if (numeroControleObjetos >= 50)
             {
-                GameObject.FindGameObjectWithTag("GameController").GetComponent<CanvasManager>().ChamarCidade();
+                if (collision.gameObject.tag == "saida")
+                {
+                    GameObject.FindGameObjectWithTag("GameController").GetComponent<CanvasManager>().ChamarCidade();
+                }
             }
         }
     }

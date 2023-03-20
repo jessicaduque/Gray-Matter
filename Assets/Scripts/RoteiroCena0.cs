@@ -22,6 +22,7 @@ public class RoteiroCena0 : MonoBehaviour
     {
         falasRodando = false;
         falaTexto.text = "";
+        GameObject.FindGameObjectWithTag("Player").GetComponent<Corpo>().PrenderPersonagem();
     }
 
     // Update is called once per frame
