@@ -17,7 +17,7 @@ public class Corpo : MonoBehaviour
 
     public GameObject TelaMorte;
 
-    bool isGrounded = false;
+    bool isGrounded = true;
     bool podeMover;
     bool podeGirar;
 
@@ -33,7 +33,6 @@ public class Corpo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         if (podeMover)
         {
             Mover();
@@ -86,9 +85,20 @@ public class Corpo : MonoBehaviour
             }
         }
     }
-
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("chao"))
+        {
+            isGrounded = false;
+        }
+    }
     private void OnCollisionEnter(Collision collision)
     {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("chao"))
+        {
+            isGrounded = true;
+        }
+
         if (collision.gameObject.tag == "Ataque_Inimigo")
         {
             hp = hp - 10;
