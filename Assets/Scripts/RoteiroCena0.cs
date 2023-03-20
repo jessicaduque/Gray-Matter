@@ -103,7 +103,20 @@ public class RoteiroCena0 : MonoBehaviour
         else if (numeroFala == 4 || numeroFala == 5 || numeroFala == 7)
         {
             FalaPorTempo();
-            if (Input.GetMouseButtonDown(0))
+            if (numeroFala == 5)
+            {
+                if (Input.GetMouseButtonDown(0))
+                {
+                    falaTexto.text = "";
+                    GameObject.FindGameObjectWithTag("Player").GetComponent<Corpo>().DesprenderPersonagem();
+                }
+                if (tempo > 30f)
+                {
+                    numeroProgresso = 7;
+                    RodarFalas();
+                }
+            }
+            else if (Input.GetMouseButtonDown(0))
             {
                 falasRodando = false;
                 GameObject.FindGameObjectWithTag("Player").GetComponent<Corpo>().DesprenderPersonagem();
@@ -160,7 +173,7 @@ public class RoteiroCena0 : MonoBehaviour
     public void IterarControleObjetos()
     {
         numeroProgresso++;
-        if(numeroProgresso == 7)
+        if(numeroProgresso == 7 || tempo > 30f)
         {
             RodarFalas();
         }
