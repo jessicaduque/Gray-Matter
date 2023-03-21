@@ -56,7 +56,7 @@ public class Inimigo : MonoBehaviour
     public void EstaAtacando()
     {
         GameObject Ataque = Instantiate(MeuAtaque, PontoDeSaida.transform.position, Quaternion.identity);
-        Ataque.GetComponent<Rigidbody>().AddForce(transform.forward * 500);
+        Ataque.GetComponent<Rigidbody>().AddForce((transform.forward + new Vector3(0f, 0.005f, 0f)) * 500);
         Destroy(Ataque, 5f);
     }
 

@@ -48,17 +48,13 @@ public class Bala : MonoBehaviour
         {
             numeroControleObjetos = GameObject.FindGameObjectWithTag("GameController").GetComponent<RoteiroCena1>().ReturnControleObjetos();
             
-            /*
-            if (numeroControleObjetos > 0)
+            if (collision.gameObject.layer == LayerMask.NameToLayer("breakable"))
             {
-                if (collision.gameObject.layer == LayerMask.NameToLayer("breakable"))
-                {
-                    GameObject.FindGameObjectWithTag("GameController").GetComponent<CanvasManager>().QuebrarVidroSom();
-                    GameObject.FindGameObjectWithTag("GameController").GetComponent<RoteiroCena0>().IterarControleObjetos();
-                    Destroy(collision.gameObject);
-                }
+                GameObject.FindGameObjectWithTag("GameController").GetComponent<CanvasManager>().QuebrarVidroSom();
+                GameObject.FindGameObjectWithTag("GameController").GetComponent<RoteiroCena1>().IterarControleObjetos();
+                Destroy(collision.gameObject);
             }
-            */
+            
         }
 
 

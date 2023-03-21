@@ -65,16 +65,14 @@ public class RoteiroCena1 : MonoBehaviour
             falaTexto.text = "There, there! There's a very important target right there, so try to hit it.";
         }
         
-        if (numeroFala == 3)
-        {
-            falaTexto.text = "adsdad";
-            FalaPorTempo();
-        }
-        
         if (numeroFala == 4)
         {
-            falaTexto.text = "aaa";
-            FalaPorTempo();
+            falaTexto.text = "Easy right? But...";
+        }
+        
+        if (numeroFala == 5)
+        {
+            falaTexto.text = "It'll get worse.";
         }
         /*
         if (numeroFala == 5)
@@ -108,6 +106,7 @@ public class RoteiroCena1 : MonoBehaviour
 
         if (numeroFala == 0)
         {
+            Debug.Log(tempo);
             if (tempo >= 3f)
             {
                 ScriptFalas();
@@ -117,16 +116,36 @@ public class RoteiroCena1 : MonoBehaviour
                     GameObject.FindGameObjectWithTag("Player").GetComponent<Corpo>().DesprenderPersonagem();
                 }
             }
+            
         }
-        else if(numeroFala == 2)
+        else if (numeroFala == 2 || numeroFala == 4 || numeroFala == 5)
         {
             FalaPorTempo();
             if (Input.GetMouseButtonDown(0))
             {
-                falaTexto.text = "";
-                GameObject.FindGameObjectWithTag("Player").GetComponent<Corpo>().DesprenderPersonagem();
+                if(numeroFala == 4)
+                {
+                    ScriptFalas();
+                }
+                else 
+                {
+                    falaTexto.text = "";
+                    GameObject.FindGameObjectWithTag("Player").GetComponent<Corpo>().DesprenderPersonagem();
+                }
+                
             }
         }
+        else if (numeroFala == 3)
+        {
+            if (tempo >= 0.5f)
+            {
+                GameObject.FindGameObjectWithTag("Arma").GetComponent<AtiraArma>().PrenderArma();
+                numeroFala++;
+                ScriptFalas();
+                tempo = 0.0f;
+            }
+        }
+
         /*
         else if (numeroFala == 4 || numeroFala == 5 || numeroFala == 7)
         {

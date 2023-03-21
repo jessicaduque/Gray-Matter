@@ -23,6 +23,8 @@ public class Corpo : MonoBehaviour
 
     int numeroControleObjetos = 0;
 
+    float tempo = 0.0f;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -83,16 +85,26 @@ public class Corpo : MonoBehaviour
                 }
             }
         }
+    }
 
-        if(collision.gameObject.tag == "collider1")
+    private void OnTriggerStay(Collider collision)
+    {
+        if (collision.gameObject.tag == "collider1")
         {
-            Rb.velocity = new Vector3(0, 0, 0);
+            tempo += Time.deltaTime;
             podeMover = false;
             GameObject.FindGameObjectWithTag("Arma").GetComponent<AtiraArma>().PrenderArma();
-            GameObject.FindGameObjectWithTag("GameController").GetComponent<RoteiroCena1>().RodarFalas();
-            Destroy(collision.gameObject, 0.1f);
+            Rb.velocity = new Vector3(0, 0, 0);
+            if (tempo > 1f)
+            {
+                GameObject.FindGameObjectWithTag("GameController").GetComponent<RoteiroCena1>().RodarFalas();
+                Destroy(collision.gameObject, 0.1f);
+                tempo = 0.0f;
+            }
+
         }
     }
+
     private void OnCollisionExit(Collision collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("chao"))
