@@ -11,6 +11,7 @@ TagManager:
   - saida
   - collider1
   - inimigo1
+  - collider2
   layers:
   - Default
   - TransparentFX

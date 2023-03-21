@@ -74,11 +74,11 @@ public class RoteiroCena1 : MonoBehaviour
         {
             falaTexto.text = "It'll get worse.";
         }
-        /*
-        if (numeroFala == 5)
+        if (numeroFala == 6)
         {
-            falaTexto.text = "Try shooting it.";
+            falaTexto.text = "So many! Take them all out...";
         }
+        /*
         if (numeroFala == 6)
         {
             falaTexto.text = "Like that! Try shooting a few more things...";
@@ -118,7 +118,7 @@ public class RoteiroCena1 : MonoBehaviour
             }
             
         }
-        else if (numeroFala == 2 || numeroFala == 4 || numeroFala == 5)
+        else if (numeroFala == 2 || numeroFala == 4 || numeroFala == 5 || numeroFala == 6)
         {
             FalaPorTempo();
             if (Input.GetMouseButtonDown(0))
@@ -127,7 +127,15 @@ public class RoteiroCena1 : MonoBehaviour
                 {
                     ScriptFalas();
                 }
-                else 
+                else if(numeroFala == 6)
+                {
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        falasRodando = false;
+                        GameObject.FindGameObjectWithTag("Player").GetComponent<Corpo>().DesprenderPersonagem();
+                    }
+                }
+                else
                 {
                     falaTexto.text = "";
                     GameObject.FindGameObjectWithTag("Player").GetComponent<Corpo>().DesprenderPersonagem();

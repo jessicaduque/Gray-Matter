@@ -74,7 +74,13 @@ public class Corpo : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        if(SceneManager.GetActiveScene().buildIndex == 0)
+        if (collision.gameObject.tag == "collider2")
+        {
+            GameObject.FindGameObjectWithTag("Arma").GetComponent<AtiraArma>().PrenderArma();
+            GameObject.FindGameObjectWithTag("GameController").GetComponent<RoteiroCena1>().RodarFalas();
+            Destroy(collision.gameObject, 0.1f);
+        }
+        if (SceneManager.GetActiveScene().buildIndex == 0)
         {
             numeroControleObjetos = GameObject.FindGameObjectWithTag("GameController").GetComponent<RoteiroCena0>().ReturnControleObjetos();
             if (numeroControleObjetos >= 50)
