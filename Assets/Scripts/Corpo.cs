@@ -72,7 +72,6 @@ public class Corpo : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-
         if(SceneManager.GetActiveScene().buildIndex == 0)
         {
             numeroControleObjetos = GameObject.FindGameObjectWithTag("GameController").GetComponent<RoteiroCena0>().ReturnControleObjetos();
@@ -83,6 +82,15 @@ public class Corpo : MonoBehaviour
                     GameObject.FindGameObjectWithTag("GameController").GetComponent<CanvasManager>().ChamarCidade();
                 }
             }
+        }
+
+        if(collision.gameObject.tag == "collider1")
+        {
+            Rb.velocity = new Vector3(0, 0, 0);
+            podeMover = false;
+            GameObject.FindGameObjectWithTag("Arma").GetComponent<AtiraArma>().PrenderArma();
+            GameObject.FindGameObjectWithTag("GameController").GetComponent<RoteiroCena1>().RodarFalas();
+            Destroy(collision.gameObject, 0.1f);
         }
     }
     private void OnCollisionExit(Collision collision)

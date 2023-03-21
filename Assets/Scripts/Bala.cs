@@ -49,13 +49,6 @@ public class Bala : MonoBehaviour
             numeroControleObjetos = GameObject.FindGameObjectWithTag("GameController").GetComponent<RoteiroCena1>().ReturnControleObjetos();
             
             /*
-            if (collision.gameObject.tag == "tv")
-            {
-                GameObject.FindGameObjectWithTag("GameController").GetComponent<CanvasManager>().QuebrarVidroSom();
-                GameObject.FindGameObjectWithTag("GameController").GetComponent<RoteiroCena0>().IterarControleObjetos();
-                GameObject.FindGameObjectWithTag("GameController").GetComponent<RoteiroCena0>().RodarFalas();
-                Destroy(collision.gameObject);
-            }
             if (numeroControleObjetos > 0)
             {
                 if (collision.gameObject.layer == LayerMask.NameToLayer("breakable"))

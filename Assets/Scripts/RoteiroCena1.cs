@@ -26,6 +26,7 @@ public class RoteiroCena1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(numeroFala);
         ControleFalas();
 
         if (!falasRodando)
@@ -58,38 +59,40 @@ public class RoteiroCena1 : MonoBehaviour
             falaTexto.text = "There we go, this is a better space for us!";
             FalaPorTempo();
         }
-        /*
-        if (numeroFala == 1)
-        {
-            falaTexto.text = "Hey, you.";
-            FalaPorTempo();
-        }
+        
         if (numeroFala == 2)
         {
-            falaTexto.text = "Let me help you out.";
-            FalaPorTempo();
+            falaTexto.text = "There, there! There's a very important target right there, so try to hit it.";
         }
+        
         if (numeroFala == 3)
         {
-            falaTexto.text = "See that tv over there?";
+            falaTexto.text = "adsdad";
             FalaPorTempo();
         }
+        
         if (numeroFala == 4)
+        {
+            falaTexto.text = "aaa";
+            FalaPorTempo();
+        }
+        /*
+        if (numeroFala == 5)
         {
             falaTexto.text = "Try shooting it.";
         }
-        if (numeroFala == 5)
+        if (numeroFala == 6)
         {
             falaTexto.text = "Like that! Try shooting a few more things...";
             GameObject.FindGameObjectWithTag("Arma").GetComponent<AtiraArma>().PrenderArma();
         }
-        if (numeroFala == 6)
+        if (numeroFala == 7)
         {
             falaTexto.text = "Well, why don't we go somewhere else now?";
             GameObject.FindGameObjectWithTag("Arma").GetComponent<AtiraArma>().PrenderArma();
             FalaPorTempo();
         }
-        if (numeroFala == 7)
+        if (numeroFala == 8)
         {
             falaTexto.text = "Go on.";
         }
@@ -113,6 +116,15 @@ public class RoteiroCena1 : MonoBehaviour
                     falasRodando = false;
                     GameObject.FindGameObjectWithTag("Player").GetComponent<Corpo>().DesprenderPersonagem();
                 }
+            }
+        }
+        else if(numeroFala == 2)
+        {
+            FalaPorTempo();
+            if (Input.GetMouseButtonDown(0))
+            {
+                falaTexto.text = "";
+                GameObject.FindGameObjectWithTag("Player").GetComponent<Corpo>().DesprenderPersonagem();
             }
         }
         /*
@@ -143,7 +155,7 @@ public class RoteiroCena1 : MonoBehaviour
                 }
             }
         }*/
-        else
+        else if(numeroFala != 1)
         {
             ScriptFalas();
         }

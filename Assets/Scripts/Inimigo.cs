@@ -71,6 +71,12 @@ public class Inimigo : MonoBehaviour
         if(hp == 0)
         {
             Anim.SetBool("Morto", true);
+            if(gameObject.tag == "inimigo1")
+            {
+                GameObject.FindGameObjectWithTag("GameController").GetComponent<RoteiroCena1>().IterarControleObjetos();
+                GameObject.FindGameObjectWithTag("GameController").GetComponent<RoteiroCena1>().RodarFalas();
+                GameObject.FindGameObjectWithTag("Arma").GetComponent<AtiraArma>().PrenderArma();
+            }
             Destroy(this.gameObject);
         }
     }

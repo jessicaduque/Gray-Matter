@@ -9,6 +9,8 @@ TagManager:
   - Ataque_Inimigo
   - tv
   - saida
+  - collider1
+  - inimigo1
   layers:
   - Default
   - TransparentFX
