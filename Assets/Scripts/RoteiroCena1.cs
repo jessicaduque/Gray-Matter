@@ -26,7 +26,6 @@ public class RoteiroCena1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(numeroFala);
         ControleFalas();
 
         if (!falasRodando)
@@ -106,7 +105,6 @@ public class RoteiroCena1 : MonoBehaviour
 
         if (numeroFala == 0)
         {
-            Debug.Log(tempo);
             if (tempo >= 3f)
             {
                 ScriptFalas();

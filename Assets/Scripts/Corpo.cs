@@ -24,6 +24,7 @@ public class Corpo : MonoBehaviour
     int numeroControleObjetos = 0;
 
     float tempo = 0.0f;
+    float tempoRec = 0.0f;
     
     // Start is called before the first frame update
     void Start()
@@ -35,6 +36,8 @@ public class Corpo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        RecuperarVida();
+
         if (podeMover)
         {
             Mover();
@@ -47,6 +50,29 @@ public class Corpo : MonoBehaviour
         }
     }
 
+    void RecuperarVida()
+    {
+        if(hp < 100)
+        {
+            tempoRec += Time.deltaTime;
+            if (tempoRec > 10f)
+            {
+                hp += 10;
+                float alphaSangue = (float)hp / 100;
+                alphaSangue = 1 - alphaSangue;
+                sangue.color = new Vector4(1, 1, 1, alphaSangue);
+                tempoRec = 0.0f;
+            }
+        }
+        else if(hp > 100)
+        {
+            hp = 100;
+        }
+        else
+        {
+            tempoRec = 0.0f;
+        }
+    }
     void Mover()
     {
         // Mover
