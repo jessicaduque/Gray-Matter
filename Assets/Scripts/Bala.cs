@@ -5,11 +5,11 @@ using UnityEngine.SceneManagement;
 public class Bala : MonoBehaviour
 {
     int numeroControleObjetos = 0;
+    bool finalJogo = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -24,6 +24,7 @@ public class Bala : MonoBehaviour
             Destroy(this.gameObject);
         }
         
+
 
         if (SceneManager.GetActiveScene().buildIndex == 0)
         {
@@ -60,6 +61,14 @@ public class Bala : MonoBehaviour
             
         }
 
+        if (GameObject.FindGameObjectWithTag("GameController").GetComponent<RoteiroCena3>().ReturnAcabouJogo())
+        {
+            if(collision.gameObject.tag == "espelho")
+            {
+                GameObject.FindGameObjectWithTag("GameController").GetComponent<RoteiroCena3>().AcabouJogo();
+            }
+
+        }
 
 
     }

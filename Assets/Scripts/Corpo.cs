@@ -153,6 +153,10 @@ public class Corpo : MonoBehaviour
                 GameObject.FindGameObjectWithTag("GameController").GetComponent<CanvasManager>().ChamarEscola();
             }
         }
+        if (collision.gameObject.tag == "collider3")
+        {
+            GameObject.FindGameObjectWithTag("GameController").GetComponent<RoteiroCena3>().RodarFalas();
+        }
     }
 
     private void OnTriggerStay(Collider collision)
@@ -176,7 +180,6 @@ public class Corpo : MonoBehaviour
             GameObject.FindGameObjectWithTag("Player").GetComponent<Corpo>().PrenderMexer();
             GameObject.FindGameObjectWithTag("Player").GetComponent<Corpo>().PrenderGiro();
             GameObject.FindGameObjectWithTag("MainCamera").GetComponent<MoveArma>().PrenderArma();
-            GameObject.FindGameObjectWithTag("GameController").GetComponent<RoteiroCena3>().RodarFalas();
             Destroy(collision.gameObject, 0.1f);
         }
     }

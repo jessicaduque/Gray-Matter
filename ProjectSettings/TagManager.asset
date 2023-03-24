@@ -13,6 +13,7 @@ TagManager:
   - inimigo1
   - collider2
   - collider3
+  - espelho
   layers:
   - Default
   - TransparentFX
