@@ -25,7 +25,10 @@ public class Corpo : MonoBehaviour
 
     float tempo = 0.0f;
     float tempoRec = 0.0f;
-    
+
+    public AudioSource passosAudio;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +39,7 @@ public class Corpo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         RecuperarVida();
 
         if (podeMover)
@@ -78,12 +82,21 @@ public class Corpo : MonoBehaviour
         // Mover
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            velocidadeP = 10;
+            if (SceneManager.GetActiveScene().buildIndex == 3)
+            {
+                velocidadeP = 5;
+            }
+            else
+            {
+                velocidadeP = 10;
+            }
         }
         else
         {
             velocidadeP = 5;
         }
+
+        
 
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
@@ -96,8 +109,23 @@ public class Corpo : MonoBehaviour
         Vector3 velCorrigida = velX * transform.right + velZ * transform.forward;
         Rb.velocity = new Vector3(velCorrigida.x, Rb.velocity.y, velCorrigida.z);
 
-    }
 
+        if (passosAudio != null)
+        {
+            if ((velZ != 0 || velX != 0) && isGrounded)
+            {
+                passosAudio.enabled = true;
+            }
+            else
+            {
+                passosAudio.enabled = false;
+
+            }
+
+        }
+        
+
+    }
     private void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.tag == "collider2")
@@ -106,6 +134,7 @@ public class Corpo : MonoBehaviour
             GameObject.FindGameObjectWithTag("GameController").GetComponent<RoteiroCena1>().RodarFalas();
             Destroy(collision.gameObject, 0.1f);
         }
+
         if (SceneManager.GetActiveScene().buildIndex == 0)
         {
             numeroControleObjetos = GameObject.FindGameObjectWithTag("GameController").GetComponent<RoteiroCena0>().ReturnControleObjetos();
@@ -115,6 +144,13 @@ public class Corpo : MonoBehaviour
                 {
                     GameObject.FindGameObjectWithTag("GameController").GetComponent<CanvasManager>().ChamarCidade();
                 }
+            }
+        }
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            if (collision.gameObject.tag == "saida")
+            {
+                GameObject.FindGameObjectWithTag("GameController").GetComponent<CanvasManager>().ChamarEscola();
             }
         }
     }
@@ -133,7 +169,15 @@ public class Corpo : MonoBehaviour
                 Destroy(collision.gameObject, 0.1f);
                 tempo = 0.0f;
             }
+        }
 
+        if (collision.gameObject.tag == "collider3")
+        {
+            GameObject.FindGameObjectWithTag("Player").GetComponent<Corpo>().PrenderMexer();
+            GameObject.FindGameObjectWithTag("Player").GetComponent<Corpo>().PrenderGiro();
+            GameObject.FindGameObjectWithTag("MainCamera").GetComponent<MoveArma>().PrenderArma();
+            GameObject.FindGameObjectWithTag("GameController").GetComponent<RoteiroCena3>().RodarFalas();
+            Destroy(collision.gameObject, 0.1f);
         }
     }
 
@@ -195,4 +239,10 @@ public class Corpo : MonoBehaviour
     {
         podeGirar = true;
     }
+
+    public void PrenderMexer()
+    {
+        podeMover = false;
+    }
+
 }

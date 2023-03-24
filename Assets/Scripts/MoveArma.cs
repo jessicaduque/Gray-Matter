@@ -9,6 +9,8 @@ public class MoveArma : MonoBehaviour
 
     bool podeUsarArma = false;
 
+    public GameObject espelho;
+
     // Update is called once per frame
     void Update()
     {
@@ -28,5 +30,10 @@ public class MoveArma : MonoBehaviour
     public void DesprenderArma()
     {
         podeUsarArma = true;
+    }
+
+    public void OlharEspelho()
+    {
+        transform.LookAt(espelho.transform.position);
     }
 }

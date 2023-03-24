@@ -20,7 +20,10 @@ public class Bala : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Destroy(this.gameObject);
+        if(collision.gameObject.tag != "Ataque_Inimigo"){
+            Destroy(this.gameObject);
+        }
+        
 
         if (SceneManager.GetActiveScene().buildIndex == 0)
         {

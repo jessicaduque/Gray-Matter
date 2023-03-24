@@ -41,9 +41,12 @@ public class RoteiroCena0 : MonoBehaviour
         // Falas
         if (Input.GetMouseButtonDown(0))
         {
-            tempo = 0.0f;
-            speechAudio.Stop();
-            numeroFala++;
+            if (tempo > 1f)
+            {
+                tempo = 0.0f;
+                speechAudio.Stop();
+                numeroFala++;
+            }
         }
 
         if(numeroFala == 0)

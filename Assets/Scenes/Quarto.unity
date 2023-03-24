@@ -2456,6 +2456,7 @@ MonoBehaviour:
   sangue: {fileID: 1562042063}
   hp: 100
   TelaMorte: {fileID: 2132464577}
+  passosAudio: {fileID: 0}
 --- !u!65 &1531244365
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3502,7 +3503,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: ddd6ca8579db9114ea83721b37677e20, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 7c301be0086cc5843a11de4f3d762fd7, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Inimigo : MonoBehaviour
 {
@@ -70,6 +71,10 @@ public class Inimigo : MonoBehaviour
         hp--;
         if(hp == 0)
         {
+            if (SceneManager.GetActiveScene().buildIndex == 1)
+            {
+                GameObject.FindGameObjectWithTag("GameController").GetComponent<RoteiroCena1>().IterarControleObjetos();
+            }
             Anim.SetBool("Morto", true);
             if(gameObject.tag == "inimigo1")
             {

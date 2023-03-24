@@ -17,6 +17,8 @@ public class RoteiroCena1 : MonoBehaviour
 
     int numeroProgresso = 0;
 
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,9 +50,12 @@ public class RoteiroCena1 : MonoBehaviour
         // Falas
         if (Input.GetMouseButtonDown(0))
         {
-            tempo = 0.0f;
-            speechAudio.Stop();
-            numeroFala++;
+            if (tempo > 1f)
+            {
+                tempo = 0.0f;
+                speechAudio.Stop();
+                numeroFala++;
+            }
         }
 
         if (numeroFala == 0)
@@ -67,6 +72,7 @@ public class RoteiroCena1 : MonoBehaviour
         if (numeroFala == 4)
         {
             falaTexto.text = "Easy right? But...";
+            
         }
         
         if (numeroFala == 5)
@@ -77,23 +83,18 @@ public class RoteiroCena1 : MonoBehaviour
         {
             falaTexto.text = "So many! Take them all out...";
         }
-        /*
-        if (numeroFala == 6)
-        {
-            falaTexto.text = "Like that! Try shooting a few more things...";
-            GameObject.FindGameObjectWithTag("Arma").GetComponent<AtiraArma>().PrenderArma();
-        }
         if (numeroFala == 7)
         {
-            falaTexto.text = "Well, why don't we go somewhere else now?";
-            GameObject.FindGameObjectWithTag("Arma").GetComponent<AtiraArma>().PrenderArma();
-            FalaPorTempo();
+            falaTexto.text = "Good job! Keep on eliminating everything...";
         }
         if (numeroFala == 8)
         {
-            falaTexto.text = "Go on.";
+            falaTexto.text = "Don't stop!";
         }
-        */
+        if (numeroFala == 9)
+        {
+            falaTexto.text = "Seems you really got into this.";
+        }
     }
 
     void ControleFalas()
@@ -116,70 +117,61 @@ public class RoteiroCena1 : MonoBehaviour
             }
             
         }
-        else if (numeroFala == 2 || numeroFala == 4 || numeroFala == 5 || numeroFala == 6)
+        else if (numeroFala == 2 || numeroFala == 4 || numeroFala == 5 || numeroFala == 6 || numeroFala == 8 || numeroFala == 9)
         {
             FalaPorTempo();
-            if (Input.GetMouseButtonDown(0))
+            if(numeroFala == 8 || numeroFala == 9)
             {
-                if(numeroFala == 4)
+                if (tempo > 2.5f)
                 {
-                    ScriptFalas();
+                    falasRodando = false;
                 }
-                else if(numeroFala == 6)
+            }
+            else{
+                if (Input.GetMouseButtonDown(0))
                 {
-                    if (Input.GetMouseButtonDown(0))
+                    if (numeroFala == 4)
                     {
-                        falasRodando = false;
+                        ScriptFalas();
+                    }
+                    else if (numeroFala == 6)
+                    {
+                        if (Input.GetMouseButtonDown(0))
+                        {
+                            falasRodando = false;
+                            GameObject.FindGameObjectWithTag("Player").GetComponent<Corpo>().DesprenderPersonagem();
+                        }
+                    }
+                    else
+                    {
+                        falaTexto.text = "";
                         GameObject.FindGameObjectWithTag("Player").GetComponent<Corpo>().DesprenderPersonagem();
                     }
+
                 }
-                else
-                {
-                    falaTexto.text = "";
-                    GameObject.FindGameObjectWithTag("Player").GetComponent<Corpo>().DesprenderPersonagem();
-                }
-                
             }
         }
         else if (numeroFala == 3)
         {
             if (tempo >= 0.5f)
             {
+                GameObject.FindGameObjectWithTag("Player").GetComponent<Corpo>().PrenderMexer();
                 GameObject.FindGameObjectWithTag("Arma").GetComponent<AtiraArma>().PrenderArma();
                 numeroFala++;
                 ScriptFalas();
                 tempo = 0.0f;
             }
         }
-
-        /*
-        else if (numeroFala == 4 || numeroFala == 5 || numeroFala == 7)
+        else if(numeroFala == 7)
         {
             FalaPorTempo();
-
-            if (numeroFala == 5)
+            if (tempo > 2.5f)
             {
-                if (Input.GetMouseButtonDown(0))
-                {
-                    falaTexto.text = "";
-                    GameObject.FindGameObjectWithTag("Player").GetComponent<Corpo>().DesprenderPersonagem();
-                }
-                if (tempo > 30f)
-                {
-                    numeroProgresso = 7;
-                    RodarFalas();
-                }
+                tempo = 0.0f;
+                numeroFala++;
+                ScriptFalas();
             }
-            else if (Input.GetMouseButtonDown(0))
-            {
-                falasRodando = false;
-                GameObject.FindGameObjectWithTag("Player").GetComponent<Corpo>().DesprenderPersonagem();
-                if (numeroFala == 7)
-                {
-                    numeroProgresso = 50;
-                }
-            }
-        }*/
+        }
         else if(numeroFala != 1)
         {
             ScriptFalas();
@@ -217,7 +209,11 @@ public class RoteiroCena1 : MonoBehaviour
     public void IterarControleObjetos()
     {
         numeroProgresso++;
-        if (numeroProgresso == 7 || tempo > 30f)
+        if (numeroProgresso == 12)
+        {
+            RodarFalas();
+        }
+        if(numeroProgresso == 24)
         {
             RodarFalas();
         }

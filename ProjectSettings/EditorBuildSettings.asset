@@ -14,4 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Cidade.unity
     guid: dab52a771d551ca40930496e8e13757a
+  - enabled: 1
+    path: Assets/Scenes/Escola.unity
+    guid: ab99abcbddb3c9e44a36bcfce3ee2961
+  - enabled: 1
+    path: Assets/Scenes/Preto.unity
+    guid: 30b69fb47dd89a54db8932467116fbe0
   m_configObjects: {}
