@@ -11,6 +11,8 @@ public class Inimigo : MonoBehaviour
     public GameObject MeuAtaque;
     public GameObject PontoDeSaida;
 
+    public GameObject parede;
+
     int hp = 3;
 
     // Start is called before the first frame update
@@ -78,6 +80,7 @@ public class Inimigo : MonoBehaviour
             Anim.SetBool("Morto", true);
             if(gameObject.tag == "inimigo1")
             {
+                Destroy(parede.gameObject);
                 GameObject.FindGameObjectWithTag("GameController").GetComponent<RoteiroCena1>().IterarControleObjetos();
                 GameObject.FindGameObjectWithTag("GameController").GetComponent<RoteiroCena1>().RodarFalas();
                 GameObject.FindGameObjectWithTag("Arma").GetComponent<AtiraArma>().PrenderArma();

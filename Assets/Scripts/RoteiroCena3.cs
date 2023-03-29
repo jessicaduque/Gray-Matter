@@ -50,7 +50,7 @@ public class RoteiroCena3 : MonoBehaviour
         // Falas
         if (Input.GetMouseButtonDown(0))
         {
-            if (tempo > 1f)
+            if (tempo > 1.5f)
             {
                 tempo = 0.0f;
                 speechAudio.Stop();
@@ -84,7 +84,6 @@ public class RoteiroCena3 : MonoBehaviour
         }
         if (numeroFala == 5)
         {
-            GameObject.FindGameObjectWithTag("Arma").GetComponent<AtiraArma>().DesprenderArma();
             falaTexto.text = "Shoot it.";
         }
         if (numeroFala == 6)
@@ -123,7 +122,7 @@ public class RoteiroCena3 : MonoBehaviour
         else if(numeroFala == 5)
         {
             FalaPorTempo();
-            if (tempo > 6f)
+            if (tempo > 4f)
             {
                 RodarFalas();
             }
@@ -131,7 +130,7 @@ public class RoteiroCena3 : MonoBehaviour
         else if (numeroFala == 6)
         {
             FalaPorTempo();
-            if (tempo > 3f)
+            if (tempo > 2f)
             {
                 bala.Play();
                 AcabouJogo();

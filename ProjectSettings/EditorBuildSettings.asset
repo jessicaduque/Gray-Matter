@@ -7,7 +7,7 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 0
     path: 
-    guid: bfea03ad6eb536e4b94a28f1e8a36e27
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/Quarto.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Preto.unity
     guid: 30b69fb47dd89a54db8932467116fbe0
+  - enabled: 0
+    path: Assets/Scenes/RECOMECAR.unity
+    guid: 7f7befe23d10d1243af26bbe9ff223a6
   m_configObjects: {}

@@ -61,15 +61,17 @@ public class Bala : MonoBehaviour
             
         }
 
-        if (GameObject.FindGameObjectWithTag("GameController").GetComponent<RoteiroCena3>().ReturnAcabouJogo())
+        if (SceneManager.GetActiveScene().buildIndex == 3)
         {
-            if(collision.gameObject.tag == "espelho")
+            if (GameObject.FindGameObjectWithTag("GameController").GetComponent<RoteiroCena3>().ReturnAcabouJogo())
             {
-                GameObject.FindGameObjectWithTag("GameController").GetComponent<RoteiroCena3>().AcabouJogo();
+                if (collision.gameObject.tag == "espelho")
+                {
+                    GameObject.FindGameObjectWithTag("GameController").GetComponent<RoteiroCena3>().AcabouJogo();
+                }
+
             }
-
         }
-
 
     }
 }

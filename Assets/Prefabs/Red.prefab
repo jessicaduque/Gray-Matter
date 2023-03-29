@@ -594,3 +594,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MeuAtaque: {fileID: 6167646591559114099, guid: b5472acc0320dd1459fce9f641a7eaf5, type: 3}
   PontoDeSaida: {fileID: 8115034539124265293}
+  parede: {fileID: 5536068841158427201, guid: f3ca61b69b35fa24095d11390d1427a6, type: 3}

@@ -17,8 +17,6 @@ public class RoteiroCena1 : MonoBehaviour
 
     int numeroProgresso = 0;
 
-    
-
     // Start is called before the first frame update
     void Start()
     {
@@ -34,6 +32,7 @@ public class RoteiroCena1 : MonoBehaviour
         {
             falaTexto.text = "";
         }
+        
     }
 
     void ComecarRoteiro()
@@ -50,7 +49,7 @@ public class RoteiroCena1 : MonoBehaviour
         // Falas
         if (Input.GetMouseButtonDown(0))
         {
-            if (tempo > 1f)
+            if (tempo > 1.5f)
             {
                 tempo = 0.0f;
                 speechAudio.Stop();
@@ -218,4 +217,5 @@ public class RoteiroCena1 : MonoBehaviour
             RodarFalas();
         }
     }
+
 }
